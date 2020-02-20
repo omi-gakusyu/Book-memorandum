@@ -1,2 +1,35 @@
-<h1>Impressions#new</h1>
-<p>Find me in app/views/impressions/new.html.erb</p>
+<% if book_exist? %>
+  <div class="text-center">
+    <h1>読書備忘録 登録画面</h1>
+  </div>
+    <div class="text-left">
+      <div class="row">
+        <div class="col-sm-6 offset-sm-3">
+          <p>表紙：<%= @book.image %></p>
+          <p>タイトル：<%= @book.title %></p>
+          <p>作者：<%= @book.writer %></p>
+          <p>ISBN:<%= @book.isbn %></p>
+        </div>
+      </div>
+    </div>
+  
+  <div class="row">
+    <div class="col-sm-6 offset-sm-3">
+      <%= form_with(model: @impressions, local: true) do |f| %>
+        <%= render 'layouts/error_messages', model: f.object %>
+            
+        <div class="form-group">
+          <%= f.label :star, '評価' %>
+          <%= f.select :star,[['☆',1],['☆☆',2],['☆☆☆',3],['☆☆☆☆',4],['☆☆☆☆☆',5]], class: 'form-control' %>
+        <div class="form-group">
+          <%= f.label :content, '感想' %>
+          <%= f.text_area :content, class: 'form-control', rows: 8 %>
+        </div>
+        
+        <%= f.submit '備忘録登録', class: 'btn btn-primary btn-block' %>
+      <% end %>
+    </div>
+  </div>
+<% else %>
+
+<% end %>

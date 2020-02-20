@@ -5,6 +5,8 @@ class ImpressionsController < ApplicationController
   end
 
   def new
+    @impressions = Impression.new
+    @book= Book.find_by(isbn: params[:isbn])
   end
 
   def create
