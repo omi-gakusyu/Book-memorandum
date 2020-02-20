@@ -9,7 +9,16 @@
         <p>お気に入り：〇件</p>
       </div>
     </div>
-    <a href="#" class="btn btn-primary btn-block mt-2">備忘録を登録</a>
+    <div class="form-group">
+      <%= form_with(model: @book, url: search_books_path, local: true) do |f| %>
+        <div class="form-group">
+          <%= f.label :isbn, 'ISBN(半角数字13桁，－抜き)' %>
+          <%= f.text_field :isbn, class: 'form-control' %>
+        </div>
+        
+        <%= f.submit 'ISBNコードで備忘録を登録', class:'btn btn-primary btn-block' %>
+      <% end %>
+    </div>
   </aside>
   <div class="col-sm-9">
     <ul class="nav nav-tabs nav-justified mb-3">
