@@ -7,4 +7,5 @@ class User < ApplicationRecord
   has_secure_password
 
   has_many :impressions
+  has_many :books, :through => :impressions
 end

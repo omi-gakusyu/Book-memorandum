@@ -4,5 +4,8 @@ class Book < ApplicationRecord
   validates :isbn, presence: true, length:{ is:13 }, uniqueness:true, format:{ with: /\A[0-9]+\z/ }
 
   has_many :impressions
+  has_many :users , :through => :impressions
+  accepts_nested_attributes_for :impressions
+  
   
 end
