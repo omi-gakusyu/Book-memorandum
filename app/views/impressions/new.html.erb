@@ -6,7 +6,11 @@
     <div class="text-left">
       <div class="row">
         <div class="col-sm-6 offset-sm-3">
-          <p>表紙：<%= @book.image %></p>
+          <% if @book.image? %>
+            <p>表紙：<br><%= image_tag @book.image.thumb.url %></p>
+          <% else %>
+            <p>表紙：No Image</p>
+          <% end %>
           <p>タイトル：<%= @book.title %></p>
           <p>作者：<%= @book.writer %></p>
           <p>ISBN:<%= @book.isbn %></p>

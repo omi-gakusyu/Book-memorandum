@@ -7,5 +7,6 @@ class Book < ApplicationRecord
   has_many :users , :through => :impressions
   accepts_nested_attributes_for :impressions
   
+  mount_uploader :image, ImageUploader
   
 end
