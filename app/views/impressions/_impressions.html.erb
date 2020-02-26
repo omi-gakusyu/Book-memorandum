@@ -1,0 +1,27 @@
+<ul class="list-unstyled">
+  <% impressions.each do |impression| %>
+    <li class="media mb-3">
+      <% if impression.book.image? %>
+        <%= link_to impression do %><p>表紙：<br><%= image_tag impression.book.image.thumb.url %></p> <% end %>
+      <% else %>
+        <div class="d-inline-block" style="width: 200px; height: 200px; background-color: #eee">
+          <%= link_to impression do %><p>表紙：<br>No Image</p><% end %> 
+        </div>
+      <% end %>
+      
+      <div class="media-body ml-3">
+        <div>
+          <p><%= impression.user.name %> <span class="text-muted">posted at <%= impression.created_at %></span></p>
+        </div>
+        <div>
+          <p>タイトル：<%= impression.book.title %>
+          <br>作者：<%= impression.book.writer %>
+          <br>ISBN：<%= impression.book.isbn %>
+          <br>評価：☆×<%= impression.star %>
+          <br>感想:<br><%== impression.content.gsub(/\r\n|\r|\n/, "<br>") %></p>
+        </div>
+      </div>
+    </li>
+  <% end %>
+  <%= paginate impressions %>
+</ul>

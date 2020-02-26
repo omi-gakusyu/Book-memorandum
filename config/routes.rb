@@ -14,5 +14,9 @@ Rails.application.routes.draw do
     end
   end
       
-  resources :impressions, except:[:index]
+  resources :impressions, except:[:index] do
+    collection do
+      get :same_books
+    end
+  end
 end

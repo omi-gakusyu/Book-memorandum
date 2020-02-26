@@ -1,2 +1,32 @@
-<h1>Impressions#show</h1>
-<p>Find me in app/views/impressions/show.html.erb</p>
+<div class="text-left">
+  <h1>『<%= @impression.book.title %>』詳細ページ</h1>
+</div>
+
+<div class="row">
+    <div class="col-sm-3 p-0">
+      <% if @impression.book.image? %>
+        <%= image_tag @impression.book.image.thumb.url %>
+      <% else %>
+        <div class="d-inline-block" style="width: 200px; height: 200px; background-color: #eee">
+          <p>表紙：No Image</p>
+        </div>
+      <% end %>
+      <p>ISBN：<%= @impression.book.isbn %></p>
+    </div>
+    
+    <div class="col-sm-9">
+      <div>
+        <p><%= @impression.user.name %> <span class="text-muted">posted at <%= @impression.created_at %></span></p>
+        <p>タイトル：<%= @impression.book.title %>
+        <br>作者：<%= @impression.book.writer %>
+        <br>評価：☆×<%= @impression.star %>
+        <br>感想:<br><%== @impression.content.gsub(/\r\n|\r|\n/, "<br>") %></p>
+      </div>
+    </div>
+</div>
+
+<div class="text-center">
+      <%= link_to 'お気に入り登録','#', class:'btn btn-primary' %>
+      <%= link_to '備忘録を編集', edit_impression_path(@impression), class:'btn btn-primary' %>
+      <%= link_to '備忘録を削除', @impression, method: :delete, data: {confirm: "読書備忘録を削除しますか？" }, class:'btn btn-danger' %>
+    </div>

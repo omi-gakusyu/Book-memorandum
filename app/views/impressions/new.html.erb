@@ -1,41 +1,41 @@
 <div class="text-center">
-  <h1>読書備忘録 登録画面</h1>
+  <h1>読書備忘録 登録ページ</h1>
 </div>
 
 <% if book_exist? %>
     <div class="text-left">
       <div class="row">
-        <div class="col-sm-6 offset-sm-3">
+        <div class="col-sm-3">
           <% if @book.image? %>
             <p>表紙：<br><%= image_tag @book.image.thumb.url %></p>
           <% else %>
-            <p>表紙：No Image</p>
+            <div class="d-inline-block" style="width: 200px; height: 200px; background-color: #eee">
+          <p>表紙：No Image</p>
+            </div>
           <% end %>
+          <p>ISBN:<%= @book.isbn %></p>
+        </div>
+        
+        <div class="col-sm-9">
           <p>タイトル：<%= @book.title %></p>
           <p>作者：<%= @book.writer %></p>
-          <p>ISBN:<%= @book.isbn %></p>
+
+          <%= form_with(model: @impression,  local: true) do |f| %>
+            <%= render 'layouts/error_messages', model: f.object %>
+            
+            <div class="form-group">
+              <%= f.label :star, '評価' %>
+              <%= f.select :star,[['☆',1],['☆☆',2],['☆☆☆',3],['☆☆☆☆',4],['☆☆☆☆☆',5]], class: 'form-control' %>
+            </div>
+            <div class="form-group">
+              <%= f.label :content, '感想' %>
+              <%= f.text_area :content, class: 'form-control', rows: 8 %>
+            </div>
+        
+            <%= f.hidden_field :book_id , value: @book.id %>
+            <%= f.submit '備忘録登録', class: 'btn btn-primary btn-block' %>
+          <% end %>
         </div>
       </div>
     </div>
-  
-  <div class="row">
-    <div class="col-sm-6 offset-sm-3">
-      <%= form_with(model: @impression,  local: true) do |f| %>
-        <%= render 'layouts/error_messages', model: f.object %>
-            
-        <div class="form-group">
-          <%= f.label :star, '評価' %>
-          <%= f.select :star,[['☆',1],['☆☆',2],['☆☆☆',3],['☆☆☆☆',4],['☆☆☆☆☆',5]], class: 'form-control' %>
-        </div>
-        <div class="form-group">
-          <%= f.label :content, '感想' %>
-          <%= f.text_area :content, class: 'form-control', rows: 8 %>
-        </div>
-        
-        <%= f.hidden_field :book_id , value: @book.id %>
-        <%= f.submit '備忘録登録', class: 'btn btn-primary btn-block' %>
-      <% end %>
-    </div>
-  </div>
-
 <% end %>
