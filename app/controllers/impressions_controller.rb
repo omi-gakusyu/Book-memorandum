@@ -1,6 +1,6 @@
 class ImpressionsController < ApplicationController
    before_action :require_user_logged_in
-   before_action :correct_user, only:[:show, :edit, :update, :destroy]
+   before_action :correct_user, only:[:show, :edit, :update, :destroy, :same_books]
    
   def show
     @impression = Impression.find(params[:id])
@@ -45,7 +45,12 @@ class ImpressionsController < ApplicationController
   end
   
   def same_books
-    
+    if impression = current_user.impressions.find_by(book_id: params[:book_id])
+      @impressions = Impression.where(book_id: params[:book_id]).page(params[:page])
+      @book = Book.find(params[:book_id])
+    else
+      redirect_to root_url
+    end
   end
   
   private
@@ -54,9 +59,8 @@ class ImpressionsController < ApplicationController
     end
     
     def correct_user
-      @impression = Impression.find_by(id: params[:id])
-      @correct_user = Impression.find_by(user_id: @impression.user_id)
-      unless @correct_user
+      @impression = current_user.impressions.find_by(id: params[:id])
+      unless @impression
         redirect_to root_url
       end
     end

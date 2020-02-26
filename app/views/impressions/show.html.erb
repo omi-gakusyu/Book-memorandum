@@ -11,7 +11,7 @@
           <p>表紙：No Image</p>
         </div>
       <% end %>
-      <p>ISBN：<%= @impression.book.isbn %></p>
+      <%= link_to same_books_impressions_path(id: @impression, book_id: @impression.book.id) do %><p>ISBN：<%= @impression.book.isbn %></p><% end %>
     </div>
     
     <div class="col-sm-9">
