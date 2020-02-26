@@ -7,7 +7,12 @@ Rails.application.routes.draw do
   
   get 'signup', to: 'users#new'
   
-  resources :users, only: [:show, :new, :create]
+  resources :users, only: [:show, :new, :create] do
+    member do
+      get :favorites
+    end
+  end
+  
   resources :books, only: [:new, :create] do
     collection do
       post :search
@@ -19,4 +24,6 @@ Rails.application.routes.draw do
       get :same_books
     end
   end
+  
+  resources :favorites, only:[:create, :destroy]
 end

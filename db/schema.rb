@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_19_185852) do
+ActiveRecord::Schema.define(version: 2020_02_26_183217) do
 
   create_table "books", force: :cascade do |t|
     t.string "image"
@@ -19,6 +19,16 @@ ActiveRecord::Schema.define(version: 2020_02_19_185852) do
     t.string "isbn"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "favorites", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "impression_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["impression_id"], name: "index_favorites_on_impression_id"
+    t.index ["user_id", "impression_id"], name: "index_favorites_on_user_id_and_impression_id", unique: true
+    t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
   create_table "impressions", force: :cascade do |t|

@@ -1,0 +1,11 @@
+<% if current_user.favorited?(impression) %>
+  <%= form_with(model: curremt_user.favorites.find_by(impression_id: impression.id), local: true, method: :delete) do |f| %>
+    <%= hidden_field_tag :impression_id, impression.id %>
+    <%= f.submit 'お気に入り解除', class: 'btn btn-danger btn-block' %>
+  <% end %>
+<% else %>
+  <%= form_with(model: curremt_user.favorites.build(impression_id: impression.id), local: true, method: :delete) do |f| %>
+    <%= hidden_field_tag :impression_id, impression.id %>
+    <%= f.dubmit 'お気に入り登録', class: 'btn btn-primary btn-block' %>
+  <% end %>
+<% end %>

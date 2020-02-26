@@ -12,7 +12,8 @@ class ApplicationController < ActionController::Base
   end
   
   def counts(user)
-    @count_impressions =user.impressions.count
+    @count_impressions = Impression.where(user_id: user).count
+    @count_favorites = Favorite.where(user_id: user).count
   end
   
 end

@@ -4,4 +4,7 @@ class Impression < ApplicationRecord
   
   belongs_to :user
   belongs_to :book
+  
+  has_many :favorites
+  has_many :favorite_impressions, through: :favorites, source: :user
 end

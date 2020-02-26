@@ -22,9 +22,21 @@
         </div>
       </div>
     </li>
+      
       <div class="text-center">
-        <%= link_to 'お気に入り登録','#', class:'btn btn-primary' %>
+        <% if current_user.favorited?(impression) %>
+          <%= form_with(model: current_user.favorites.find_by(impression_id: impression.id), local: true, method: :delete) do |f| %>
+            <%= hidden_field_tag :impression_id, impression.id %>
+            <%= f.submit 'お気に入り解除', class: 'btn btn-danger' %>
+          <% end %>
+        <% else %>
+          <%= form_with(model: current_user.favorites.build(impression_id: impression.id), local: true) do |f| %>
+            <%= hidden_field_tag :impression_id, impression.id %>
+            <%= f.submit 'お気に入り登録', class: 'btn btn-primary' %>
+          <% end %>
+        <% end %>
       </div>
   <% end %>
+  
   <%= paginate impressions %>
 </ul>
