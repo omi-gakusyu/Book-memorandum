@@ -24,7 +24,7 @@ production:
   adapter: postgresql
   encoding: unicode
   pool: 5
-  database: memorandum_production
-  username: memorandum
+  database: Memorandum_production
+  username: Memorandum
   password: <%= ENV['MEMORUNDUM_DATABASE_PASSWORD'] %>
   
