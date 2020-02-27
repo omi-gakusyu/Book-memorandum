@@ -59,4 +59,4 @@ gem 'kaminari'
 # 画像アップロード・リサイズ
 gem 'carrierwave'
 gem 'rmagick'
-
+gem 'cloudinary'

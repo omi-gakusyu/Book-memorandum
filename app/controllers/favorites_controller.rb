@@ -5,7 +5,7 @@ class FavoritesController < ApplicationController
     impression = Impression.find(params[:impression_id])
     current_user.favorite(impression)
     flash[:success] = 'お気に入りに登録しました。'
-    redirect_to root_url
+    redirect_to favorites_user_path(current_user)
   end
 
   def destroy
