@@ -26,4 +26,4 @@ production:
   pool: 5
   database: book-memorandum_production
   username: book-memorandum
-  password: <%= ENV['MESSAGE-BOARD_DATABASE_PASSWORD'] %>
+  password: <%= ENV['BOOK-MEMORANDUM_DATABASE_PASSWORD'] %>
