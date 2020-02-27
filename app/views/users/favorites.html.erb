@@ -22,6 +22,6 @@
       <li class="nav-item"><a href="<%= favorites_user_path(@user) %>" class="nav-link<%= 'active' if current_page?(favorites_user_path(@user)) %>">お気に入り読書備忘録</a></li>
     </ul>
     
-    <%= render 'impressions/impressions', impressions: @impressions %>
+    <%= render 'impressions/impressions', impressions: @favorite_impressions %>
   </div>
 </div>
