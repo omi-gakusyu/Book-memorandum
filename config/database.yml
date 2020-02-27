@@ -26,4 +26,5 @@ production:
   pool: 5
   database: Memorandum_production
   username: Memorandum
-  password: <%= ENV['MEMORANDUM_DATABASE_PASSWORD'] %>
+  password: <%= ENV['MEMORUNDUM_DATABASE_PASSWORD'] %>
+  
