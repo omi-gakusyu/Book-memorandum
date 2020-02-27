@@ -2,7 +2,7 @@
   <% impressions.each do |impression| %>
     <li class="media mb-3">
       <% if impression.book.image? %>
-        <%= link_to impression do %><p>表紙：<br><%= image_tag impression.book.image.thumb.url %></p> <% end %>
+        <%= link_to impression do %><p>表紙：<br><%= image_tag impression.book.image.thumb %></p> <% end %>
       <% else %>
         <div class="d-inline-block" style="width: 200px; height: 200px; background-color: #eee">
           <%= link_to impression do %><p>表紙：<br>No Image</p><% end %> 
